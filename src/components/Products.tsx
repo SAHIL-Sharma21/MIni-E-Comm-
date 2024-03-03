@@ -31,8 +31,9 @@ interface Product {
 //     }
 // }
 
+let fetchData: () => void;
     useEffect(()=> {
-        const fetchData = async() => {
+         fetchData = async(): Promise<void> => {
             try {
                 const response = await fetch('https://api.freeapi.app/api/v1/public/randomproducts?page=1&limit=10&inc=category%2Cprice%2Cthumbnail%2Cimages%2Ctitle%2Cid&query=mens-watches');
                 const data = await response.json();
@@ -41,11 +42,15 @@ interface Product {
             } catch (error) {
                 console.log('Error making request:', error);
             }
-
         }
-        fetchData();
+        // fetchData();
     }, [])
 
+    //handling button when user click then it will show products
+    const showProducts = (e: React.MouseEvent<HTMLElement>) => {
+        console.log(e);
+        fetchData();
+    }
 
     return (
         <>
@@ -53,13 +58,15 @@ interface Product {
                 <h1>Store products </h1>
                     {/* looping  through array if data is present then it will render  */}
                     {data && data.map((prod: Product) => (
-                        <div key={prod.id}>
-                            <h2>{prod.title}</h2>
+                        <div className='flex flex-col sm:flex-row gap-3' key={prod.id}>
+                            <h2 className='text-red-800'>{prod.title}</h2>
                             <p>{prod.category}</p>
-                            <p>{prod.price}</p>
-                            <img src={prod.thumbnail} alt={prod.title} />
+                            <p className='text-2xl'>{prod.price}</p>
+                            <img src={prod.thumbnail} alt={prod.title} className='flex-col sm:outline' />
                         </div>
                     ))}
+                    {/* <button>{data && data.map((cat: Product) => (<h2>{cat.category}</h2>))}</button> */}
+                    <button onClick={showProducts} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2'>show products</button>
             </div>
         </>
     )
