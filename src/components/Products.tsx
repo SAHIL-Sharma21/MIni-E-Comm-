@@ -66,6 +66,7 @@ let fetchData: () => void;
                         </div>
                     ))}
                     {/* <button>{data && data.map((cat: Product) => (<h2>{cat.category}</h2>))}</button> */}
+                    {/* nakde this to conditional rendering  */}
                     <button onClick={showProducts} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2'>show products</button>
             </div>
         </>
