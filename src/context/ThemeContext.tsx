@@ -4,8 +4,8 @@ import React, {createContext, useContext, useState} from "react";
 
 
 interface themeProvider{
-    mode: string,
-    setMode: (theme: string) => void
+    mode: string | boolean,
+    setMode: (theme: boolean | string) => void
 }
 
 const themeContext = createContext<themeProvider | null>(null);
@@ -21,7 +21,7 @@ export const useTheme = () => {
 
 export const ThemeProvider: React.FC<ThemeProps> = (props) => {
 
-    const [mode, setMode] = useState<string>("Light");
+    const [mode, setMode] = useState<string | boolean>('light');
     return (
         <themeContext.Provider value={{mode, setMode}}>
             {props.children}
