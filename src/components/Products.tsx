@@ -88,24 +88,41 @@ const clearData = () => {
 
     return (
         <>
-            <div className={` ${theme?.mode === "dark"? 'bg-gray-700 text-white' : 'bg-white text-black'}`}>
-                <h1 className={`${theme?.mode === "dark"? 'bg-gray-700 text-red-500' : 'text-black'}`}>Store products </h1>
+
+           
+            <div className={` ${theme?.mode === "dark"? 'bg-gray-700 text-white' : 'bg-white'} flex flex-col  justify-center items-center`}>
+                <h1 className={`${theme?.mode === "dark"? 'bg-gray-700 text-red-500' : 'text-black'} items-center text-xl mb-2`}>Store products </h1>
+                <div className='flex flex-col  items-center justify-between'>
                     {/* looping  through array if data is present then it will render  */}
-                   
-                     {error && <h1>Error loading data...</h1>}
-                    {data && data.map((prod: Product) => (
-                        <div className='flex flex-col sm:flex-row gap-3' key={prod.id}>
-                            <h2 className='text-red-800'>{prod.title}</h2>
-                            <p>{prod.category}</p>
-                            <p className='text-2xl'>{prod.price}</p>
-                            <img src={prod.thumbnail} alt={prod.title} className='flex-col sm:outline' />
-                        </div>
-                    ))}
-                    {/* <button>{data && data.map((cat: Product) => (<h2>{cat.category}</h2>))}</button> */}
-                    {/* nakde this to conditional rendering  */}
-                    {data ? <button onClick={clearData} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2'>clear data</button> : <button onClick={showProducts} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2'>show products</button>}
-                    {/* <button onClick={showProducts} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2'>show products</button> */}
+                    {error && <h1>Error loading data...</h1>}
+                    
+
+                    
+                     
+                            <div className='w-3/4 flex flex-col align-middle items-center gap-2'>
+                                    {data && data.map((prod: Product) => (
+                                                <div className='mx-3 py-2 mt-5' key={prod.id}>
+                                                    <div className=' flex flex-col bg-slate-500 rounded-md p-4'>
+                                                        <img src={prod.thumbnail} alt={prod.title} className='rounded-md h-[60%] w-[100%]' />
+                                                        <h2 className='text-2xl'>{prod.title}</h2>
+                                                        <div className='flex flex-row justify-between'>
+                                                            <p className='text-lg'>{prod.category}</p>
+                                                            <p className='text-2xl  font-bold'> ${prod.price}</p>
+                                                        </div>
+                                                        <button className='bg-orange-400 rounded-md py-2 px-4 hover:bg-orange-300'>Add to cart</button>
+                                                    </div>
+                                                </div>
+                                    ))}
+                                    {/* <button>{data && data.map((cat: Product) => (<h2>{cat.category}</h2>))}</button> */}
+                                    {/* nakde this to conditional rendering  */}
+                                
+                                    {/* <button onClick={showProducts} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2'>show products</button> */}
+                            </div>
+
+
+                </div>
             </div>
+            {data ? <button onClick={clearData} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2 absolute top-32'>clear data</button> : <button onClick={showProducts} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2 absolute top-32'>show products</button>}
         </>
     )
 }
