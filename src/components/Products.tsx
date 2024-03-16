@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import {useTheme} from '../context/ThemeContext';
-
+import {useCart} from '../context/CartContext'
 
 const Products: React.FC = () => {
 
@@ -85,6 +85,17 @@ const clearData = () => {
     setData(null);
 }
 
+const cart = useCart();//importing useCart Hook
+
+// const addPrice = () => {
+//     cart?.setItems({...data,
+//         price: data
+//         title: data
+//     });
+//     console.log(cart?.items);
+    
+// }
+
 
     return (
         <>
@@ -107,9 +118,9 @@ const clearData = () => {
                                                         <h2 className='text-2xl'>{prod.title}</h2>
                                                         <div className='flex flex-row justify-between'>
                                                             <p className='text-lg'>{prod.category}</p>
-                                                            <p className='text-2xl  font-bold'> ${prod.price}</p>
+                                                            <p className='text-2xl  font-bold'> {`$${prod.price}`}</p>
                                                         </div>
-                                                        <button className='bg-orange-400 rounded-md py-2 px-4 hover:bg-orange-300'>Add to cart</button>
+                                                        <button className='bg-orange-400 rounded-md py-2 px-4 hover:bg-orange-300' onClick={() => cart?.setItems({price: prod.price, title: prod.title})}>Add to cart</button>
                                                     </div>
                                                 </div>
                                     ))}
@@ -122,7 +133,7 @@ const clearData = () => {
 
                 </div>
             </div>
-            {data ? <button onClick={clearData} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2 absolute top-32'>clear data</button> : <button onClick={showProducts} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2 absolute top-32'>show products</button>}
+            {data ? <button onClick={clearData} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2 absolute top-32 right-1'>clear data</button> : <button onClick={showProducts} className='bg-violet-800 text-white rounded hover:bg-violet-500 transition hover:ease-out m-6 px-6 py-2 absolute top-32 right-1'>show products</button>}
         </>
     )
 }
