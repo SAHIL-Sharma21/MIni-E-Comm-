@@ -2,7 +2,8 @@ import React from 'react'
 import Navbar from './components/Navbar';
 import Products from './components/Products';
 import { useTheme } from './context/ThemeContext';
-import Cart from './components/Cart';
+// import Cart from './components/Cart';
+// import { useCart } from './context/CartContext';
 // import {themeProvider} from './context/ThemeContext'
 
 
@@ -10,13 +11,15 @@ import Cart from './components/Cart';
 const App: React.FC = () => {
 
   const theme = useTheme();
+  // const cart = useCart();
+
   return (
     <>
     <div className={`${theme?.mode === 'dark'? 'bg-slate-700 text-white': 'text-black'}`}>
         <Navbar />
         <h1 className='text-black underline text-2xl'>mini E-comm project</h1>
         <Products />
-        <Cart />
+        {/* {cart ? <Cart /> : null} */}
       </div>
     
       

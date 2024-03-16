@@ -2,17 +2,19 @@
 
 import React, {createContext, useContext, useState} from "react";
 
-interface ItemsArray {
-    price: number | null,
-    title: string | null,
+interface ItemsData {
+    title: string,
+    price: number,
+    id: number
 }
 
-interface CartProvider {
-    items: ItemsArray | null,
-    setItems: (items: ItemsArray | null) => void,
+interface CartContextType {
+    items: ItemsData[],
+    setItems:React.Dispatch<React.SetStateAction<ItemsData[]>>;
+    // setItems: () => void,
 }
 
-const CartContext = createContext<CartProvider | null>(null);
+const CartContext = createContext<CartContextType | null>(null);
 
 
 export const  useCart = () =>{
@@ -23,13 +25,10 @@ interface CartProps {
     children: React.ReactNode,
 }
 
-interface CartData {
-    price: number | null,
-    title: string | null,
-}
 
 export const CartProvider: React.FC<CartProps> = (props) => {
 
-    const [items, setItems] = useState <CartData | null>(null);
+    const [items, setItems] = useState<ItemsData[]>([]);
+
     return <CartContext.Provider value={{items, setItems}}>{props.children}</CartContext.Provider>
 }

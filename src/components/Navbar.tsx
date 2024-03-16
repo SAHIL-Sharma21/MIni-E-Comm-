@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {useTheme} from '../context/ThemeContext'
+// import { useCart } from '../context/CartContext';
+import Cart  from '../components/Cart'
 
 const Navbar: React.FC = () => {
 
-    const theme = useTheme();
+const [cart , setCart] = useState<boolean>(false)
 
+    const theme = useTheme();
+    // const cart = useCart();
     // const handleChange = (e : React.MouseEvent<HTMLElement>) => {
     //     // console.log(e);
     //     theme?.setMode(theme.mode === 'light'? "dark" : 'light');
@@ -15,6 +19,14 @@ const Navbar: React.FC = () => {
         theme?.setMode(theme.mode === 'light'? "dark" : 'light');
     }
 
+const showCart = () => {
+    <Cart />
+    setCart(!cart);
+    cart ? <Cart / > : <p>No items in the cart </p>
+    
+    
+}
+
     return (
         <>
            <div className={`w-full  min-h-10  flex flex-col sm:flex-row  sm:gap-4  ${theme?.mode === "dark"? 'bg-slate-800 text-white' : 'bg-red-400 text-black'}`}>
@@ -24,6 +36,7 @@ const Navbar: React.FC = () => {
                 <h1>theme : {theme?.mode}</h1>
                 <h1>{theme?.mode}</h1>
                 <button onClick={handleChange} className='bg-black text-white px-4 py-2 rounded-xl my-4'>Change theme </button>
+                <button onClick={showCart}>{!cart ? <Cart /> : <p>no items in the cart </p>}</button>
            </div>
         </>
     )

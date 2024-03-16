@@ -13,6 +13,7 @@ const Products: React.FC = () => {
     const [data, setData] = useState<Product[]| null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
+    // const [cartItem, setCartItem] = useState<Cart[] | null>(null);
     //making api call
     // i wqs not able to think thiss >>>> learning no1
 interface Product {
@@ -23,6 +24,7 @@ interface Product {
     title: string,
     id: number
 }
+
 
     //api call
 // const fetchData = async() => {
@@ -87,14 +89,10 @@ const clearData = () => {
 
 const cart = useCart();//importing useCart Hook
 
-// const addPrice = () => {
-//     cart?.setItems({...data,
-//         price: data
-//         title: data
-//     });
-//     console.log(cart?.items);
-    
-// }
+const addPrice = (title: string, price: number, id: number) => {
+    console.log('data added');  
+    cart?.setItems([...cart.items, {title, price, id}]);
+}
 
 
     return (
@@ -120,7 +118,7 @@ const cart = useCart();//importing useCart Hook
                                                             <p className='text-lg'>{prod.category}</p>
                                                             <p className='text-2xl  font-bold'> {`$${prod.price}`}</p>
                                                         </div>
-                                                        <button className='bg-orange-400 rounded-md py-2 px-4 hover:bg-orange-300' onClick={() => cart?.setItems({price: prod.price, title: prod.title})}>Add to cart</button>
+                                                        <button className='bg-orange-400 rounded-md py-2 px-4 hover:bg-orange-300' onClick={() => addPrice(prod.title, prod.price, prod.id)}>Add to cart</button>
                                                     </div>
                                                 </div>
                                     ))}
