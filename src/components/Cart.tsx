@@ -14,7 +14,7 @@ const total = cart?.items.reduce((acc, amt) => {
 
     return(
         <>
-            <div>
+            <div className="w-1/2 p-3 m-3 h-auto mb-4 pb-4 bg-amber-500">
                 <h1>Our cart to checkout</h1>
                 {cart && cart?.items.length > 0 ? (
                     <>

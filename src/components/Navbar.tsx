@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {useTheme} from '../context/ThemeContext'
 // import { useCart } from '../context/CartContext';
-import Cart  from '../components/Cart'
+// import Cart  from '../components/Cart'
 
 const Navbar: React.FC = () => {
 
-const [cart , setCart] = useState<boolean>(false)
+// const [cart , setCart] = useState<boolean>(false)
 
     const theme = useTheme();
     // const cart = useCart();
@@ -19,13 +19,7 @@ const [cart , setCart] = useState<boolean>(false)
         theme?.setMode(theme.mode === 'light'? "dark" : 'light');
     }
 
-const showCart = () => {
-    <Cart />
-    setCart(!cart);
-    cart ? <Cart / > : <p>No items in the cart </p>
-    
-    
-}
+
 
     return (
         <>
@@ -36,7 +30,6 @@ const showCart = () => {
                 <h1>theme : {theme?.mode}</h1>
                 <h1>{theme?.mode}</h1>
                 <button onClick={handleChange} className='bg-black text-white px-4 py-2 rounded-xl my-4'>Change theme </button>
-                <button onClick={showCart}>{!cart ? <Cart /> : <p>no items in the cart </p>}</button>
            </div>
         </>
     )

@@ -60,7 +60,7 @@ interface Product {
 const fetchData = async ():  Promise<void> => {
     setIsLoading(true);
     try {
-        const response = await fetch('https://api.freeapi.app/api/v1/public/randomproducts?page=1&limit=10&inc=category%2Cprice%2Cthumbnail%2Cimages%2Ctitle%2Cid&query=mens-watches');
+        const response = await fetch('https://api.freeapi.app/api/v1/public/randomproducts?page=1&limit=20&inc=category%2Cprice%2Cthumbnail%2Cimages%2Ctitle%2Cid');
         const data = await response.json();
         setData(data.data.data);
     } catch (error) {
@@ -90,7 +90,7 @@ const clearData = () => {
 const cart = useCart();//importing useCart Hook
 
 const addPrice = (title: string, price: number, id: number) => {
-    console.log('data added');  
+    // console.log('data added');  
     cart?.setItems([...cart.items, {title, price, id}]);
 }
 
