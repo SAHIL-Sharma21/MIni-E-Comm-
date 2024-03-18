@@ -16,10 +16,10 @@ const App: React.FC = () => {
 
   return (
     <>
-    <div className={`${theme?.mode === 'dark'? 'bg-slate-700 text-white': 'text-black'} pb-4 gap-y-2`}>
+    <div className={`${theme?.mode === 'dark'? 'bg-slate-700 text-white': 'text-black'}  gap-y-2`}>
         <Navbar />
-        <h1 className='text-black underline text-2xl'>mini E-comm project</h1>
-        <Outlet />
+        <h1 className='text-black underline text-2xl align-top'>mini E-comm project</h1>
+        <Outlet  />
       </div>
     
       
